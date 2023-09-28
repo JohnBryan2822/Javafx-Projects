@@ -1,0 +1,4 @@
+--patch-module
+org.javacoders.CovidWidgetFX=_
+--add-reads
+org.javacoders.CovidWidgetFX=ALL-UNNAMED

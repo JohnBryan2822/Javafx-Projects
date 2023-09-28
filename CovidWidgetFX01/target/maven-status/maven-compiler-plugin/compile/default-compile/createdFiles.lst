@@ -1,0 +1,12 @@
+org\javacoders\CovidWidgetFX\datafetch\model\CountryData.class
+org\javacoders\CovidWidgetFX\App.class
+org\javacoders\CovidWidgetFX\datafetch\model\GlobalData.class
+org\javacoders\CovidWidgetFX\datafetch\DataProviderService$1.class
+org\javacoders\CovidWidgetFX\datafetch\CovidApi.class
+org\javacoders\CovidWidgetFX\datafetch\DataProviderService$2.class
+module-info.class
+org\javacoders\CovidWidgetFX\datafetch\model\CovidDataModel.class
+org\javacoders\CovidWidgetFX\config\ConfigurationService.class
+org\javacoders\CovidWidgetFX\datafetch\DataProviderService.class
+org\javacoders\CovidWidgetFX\config\ConfigModel.class
+org\javacoders\CovidWidgetFX\WidgetController.class
