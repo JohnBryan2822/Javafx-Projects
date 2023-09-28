@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootPane" stylesheets="@application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <children>
+      <VBox layoutX="69.0" layoutY="23.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label styleClass="main-title" text="Covid-19 Information" />
+            <HBox spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="country-title" text="IN" />
+                  <Text fx:id="textGlobalReport" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content-text" text="Cases: ... | Recovered: ... | Deaths: ...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Text>
+               </children>
+            </HBox>
+            <HBox spacing="20.0">
+               <children>
+                  <Text fx:id="textCoutryCode" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="country-title" text="IN" />
+                  <Text fx:id="textCountryReport" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="content-text" text="Cases: ... | Recovered: ... | Deaths: ..." />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
