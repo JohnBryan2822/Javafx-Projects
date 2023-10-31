@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Build-Jdk-Spec: 17
-Class-Path: javafx-controls-21.jar javafx-controls-21-win.jar javafx-gra
- phics-21.jar javafx-graphics-21-win.jar javafx-base-21.jar javafx-base-
- 21-win.jar javafx-fxml-21.jar javafx-fxml-21-win.jar
-Main-Class: application.gui.Main
-Created-By: Maven Integration for Eclipse
-

@@ -3,17 +3,21 @@ package org.javacoders;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.time.Duration;
+import java.time.Instant;
 
 import javax.swing.JFrame;
 
 public class Window extends JFrame implements Runnable {
 	
+	public static Window window = null;
 	public boolean isRunning;
 	
-	public static int currentState;
-	public static Scene currentScene;
+	public int currentState;
+	public Scene currentScene;
 	
-	public static KL keyListener = new KL();
+	public KL keyListener = new KL();
+	public ML mouseListener = new ML();
 	
 	public Window(int width, int height, String title) {
 		setSize(width, height);
@@ -21,26 +25,40 @@ public class Window extends JFrame implements Runnable {
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		addKeyListener(Window.keyListener);
+		addKeyListener(keyListener);
+		addMouseListener(mouseListener);
+		addMouseMotionListener(mouseListener);
 		
 		isRunning = true;
 		
-		Window.changeState(0);
+		changeState(0);
 	}
 	
-	public static void changeState(int newState) {
-		Window.currentState = newState;
-		switch (Window.currentState) {
+	public static Window getWindow() {
+		if(Window.window == null) {
+			Window.window = new Window(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT, Constants.SCREEN_TITLE);
+		}
+		
+		return Window.window;
+	}
+	
+	public void close() {
+		isRunning = false;
+	}
+	
+	public void changeState(int newState) {
+		currentState = newState;
+		switch (currentState) {
 		case 0: {
-			Window.currentScene = new MenuScene(Window.keyListener);
+			currentScene = new MenuScene(keyListener, mouseListener);
 			break;
 		}
 		case 1: {
-			Window.currentScene = new GameScene();
+			currentScene = new GameScene(keyListener);
 			break;
 		}
 		default:
-			Window.currentScene = null;
+			currentScene = null;
 			throw new IllegalArgumentException("Unknown Scene!");
 		}
 	}
@@ -62,18 +80,25 @@ public class Window extends JFrame implements Runnable {
 
 	@Override
 	public void run() {
-		double lastFrameTime = 0.0;
+		Instant lastFrameTime = Instant.now();
 		try {
 			while(isRunning) {
-				double time = Time.getTime();
-				double deltaTime = time - lastFrameTime;
-				lastFrameTime = time;
+				Instant time = Instant.now();
+				double deltaTime = Duration.between(lastFrameTime, time).toNanos() * 10E-10;
+				lastFrameTime = Instant.now();
 				
-				update(deltaTime);
+				double deltaWanted = 0.0167;
+				update(deltaWanted);
+				long msToSleep = (long)((deltaWanted - deltaTime) * 1000);
+				if(msToSleep > 0) {
+					Thread.sleep(msToSleep);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		this.dispose();
 	}
 
 }
